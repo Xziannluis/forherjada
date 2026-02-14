@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login • For Jada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Prata&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page login">
+      <section class="login__card">
+        <p class="login__eyebrow">Private page</p>
+        <h1 class="login__title">Enter the passcode</h1>
+        <p class="login__subtitle">Only for someone special.</p>
+        <form class="login__form" id="loginForm">
+          <label class="login__label" for="password">Password</label>
+          <input
+            class="login__input"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••"
+            autocomplete="off"
+            required
+          />
+          <button class="login__button" type="submit">Unlock</button>
+          <p class="login__error" id="loginError" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const form = document.getElementById("loginForm");
+      const error = document.getElementById("loginError");
+      const PASSWORD = "080105";
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const value = document.getElementById("password").value.trim();
+
+        if (value === PASSWORD) {
+          localStorage.setItem("forherjada_auth", "true");
+          window.location.href = "index.html";
+        } else {
+          error.textContent = "Incorrect password. Try again.";
+        }
+      });
+    </script>
+  </body>
+</html>
